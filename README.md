@@ -208,6 +208,12 @@ the implementation choices for details the paper does not specify. The CPU tests
 task (`scripts/smoke_cpu.py`) and the replay window and training loop
 (`scripts/check_loop_cpu.py`).
 
+## Single-GPU LIBERO pilot
+
+See the [4090 reproduction notes](docs/FPO_4090_REPRODUCTION.md) for the
+separate Task 56 experiment, the B0/B1/B2 pairing protocol, measured
+verification results, and checkpoint/resume commands.
+
 ## Citation
 
 ```bibtex
