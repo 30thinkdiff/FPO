@@ -1,0 +1,147 @@
+{
+  "status": "completed",
+  "scope": "simulator and learner interface probe using scripted actions; no pi0 decoder",
+  "suite": "libero_90",
+  "task_id": 56,
+  "task": "pick up the butter and put it in the tray",
+  "matching_initial_signatures": {
+    "state": "859dbc00a1ee77d39f5802634a01cc8af11ad311a757c4281a7b6ae927682e54",
+    "camera": "964668634ab64d1d56757ec5cf53acad01cef46288b762d319ebe310484c6cb0",
+    "wrist": "7c6d681005e4f7572149b89187b07235c5076c71fe5c5040345e6fc1f82a1117"
+  },
+  "shapes": {
+    "observation/image": [
+      224,
+      224,
+      3
+    ],
+    "observation/wrist_image": [
+      224,
+      224,
+      3
+    ],
+    "observation/state": [
+      8
+    ]
+  },
+  "scripted_env_steps": 16,
+  "replay_samples": 8,
+  "optimizer_updates": 3,
+  "optimizer_reload_verified": true,
+  "learner_setup_and_gae_seconds": 43.255495101213455,
+  "elapsed_seconds": 143.28376030176878,
+  "cgroup_ram_bytes": 17680007168,
+  "updates": [
+    {
+      "seconds": 75.17466578632593,
+      "metrics": {
+        "actor_loss": -0.0008415430784225464,
+        "advantages_mean": 0.0,
+        "advantages_std": 1.0,
+        "cfm_diff_mean": 2.101995050907135e-06,
+        "cfm_diff_std": 1.0233312423224561e-05,
+        "cfm_loss_current": 0.7475330829620361,
+        "cfm_loss_init": 0.747535228729248,
+        "clipped_fraction": 0.0,
+        "critic_loss": 3.45176362991333,
+        "grad_norm": 734.171875,
+        "q_max": 1.0648245811462402,
+        "q_mean": 0.017229825258255005,
+        "q_min": -1.2878293991088867,
+        "q_std": 0.5402442812919617,
+        "rho_max": 1.0190722942352295,
+        "rho_mean": 1.0000524520874023,
+        "rho_min": 0.9851651191711426,
+        "rho_std": 0.010247411206364632,
+        "skipped_nan": 0.0,
+        "target_q_mean": -1.748906135559082
+      },
+      "changed": {
+        "actor": true,
+        "critic": true
+      },
+      "gpu": {
+        "index": 0,
+        "used_mib": 4583,
+        "total_mib": 24564,
+        "utilization_pct": 0
+      }
+    },
+    {
+      "seconds": 3.291510157287121,
+      "metrics": {
+        "actor_loss": -0.16711755096912384,
+        "advantages_mean": 0.0,
+        "advantages_std": 1.0,
+        "cfm_diff_mean": 0.0027573024854063988,
+        "cfm_diff_std": 0.008632827550172806,
+        "cfm_loss_current": 0.7447779178619385,
+        "cfm_loss_init": 0.747535228729248,
+        "clipped_fraction": 0.875,
+        "critic_loss": 0.7997308373451233,
+        "grad_norm": 8.178174018859863,
+        "q_max": -0.42684802412986755,
+        "q_mean": -1.168400526046753,
+        "q_min": -2.0509748458862305,
+        "q_std": 0.32805919647216797,
+        "rho_max": 5.092507839202881,
+        "rho_mean": 1.5688397884368896,
+        "rho_min": 0.16946248710155487,
+        "rho_std": 1.5101059675216675,
+        "skipped_nan": 0.0,
+        "target_q_mean": -1.9346928596496582
+      },
+      "changed": {
+        "actor": true,
+        "critic": true
+      },
+      "gpu": {
+        "index": 0,
+        "used_mib": 4583,
+        "total_mib": 24564,
+        "utilization_pct": 0
+      }
+    },
+    {
+      "seconds": 0.8796575888991356,
+      "metrics": {
+        "actor_loss": -0.14760982990264893,
+        "advantages_mean": 0.0,
+        "advantages_std": 1.0,
+        "cfm_diff_mean": 0.0003186222165822983,
+        "cfm_diff_std": 0.011763900518417358,
+        "cfm_loss_current": 0.7472165822982788,
+        "cfm_loss_init": 0.747535228729248,
+        "clipped_fraction": 0.875,
+        "critic_loss": 0.13105030357837677,
+        "grad_norm": 13.787443161010742,
+        "q_max": -1.0110845565795898,
+        "q_mean": -1.6900818347930908,
+        "q_min": -2.4156320095062256,
+        "q_std": 0.29438316822052,
+        "rho_max": 4.78549337387085,
+        "rho_mean": 1.559037208557129,
+        "rho_min": 0.21171070635318756,
+        "rho_std": 1.413959264755249,
+        "skipped_nan": 0.0,
+        "target_q_mean": -1.7601892948150635
+      },
+      "changed": {
+        "actor": true,
+        "critic": true
+      },
+      "gpu": {
+        "index": 0,
+        "used_mib": 4583,
+        "total_mib": 24564,
+        "utilization_pct": 0
+      }
+    }
+  ],
+  "sampled_resources": {
+    "gpu_peak_mib": 4583,
+    "cgroup_ram_peak_bytes": 18045939712,
+    "samples": 75
+  },
+  "source_revision": "7fed06d"
+}
