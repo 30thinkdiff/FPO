@@ -143,5 +143,15 @@
     "cgroup_ram_peak_bytes": 18045939712,
     "samples": 75
   },
-  "source_revision": "7fed06d"
+  "source_revision": "7fed06d929a49462df44664b60ca193f22a4bf2c",
+  "config_sha256": "40101f2b6b4afe4c0f95e7ac58431e8153ce8989aa3c4420c43215dbce5bea5f",
+  "environment": {
+    "openpi": "a6d2400d2534ce32e7bdf8747709b97aaef8ec04",
+    "libero": "87edbd1b823e464bc66557d213cc45e9f88aa543",
+    "train_seed": 42,
+    "init_id": 0,
+    "jax": "0.5.3",
+    "mujoco": "3.3.1",
+    "robosuite": "1.4.1"
+  }
 }

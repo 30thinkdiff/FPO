@@ -104,6 +104,8 @@ scripts/run_libero_4090.sh run "$FPO_RUNTIME" "$FPO_RUNTIME/runs/p1" --resume --
   Orbax 0.11.13、MuJoCo 3.3.1、robosuite 1.4.1。JAX 与 Orbax 版本和论文脚本
   依赖文件有差异。
 - 独立入口增加初态拆分、动作块窗口、checkpoint 完整性及暖启动边界测试。
+- 四个评测初态以正序及倒序各恢复一次。80 个等待控制步后，同初态的 MuJoCo 状态和
+  两路图像逐字节匹配。缓存 tokenizer 生成 12 个有效 token，256×256 MP4 编解码通过。
 - `probe_006` 在 RTX 4090 上使用固定 LIBERO-90 第 56 项，重复初始化的模拟状态和两路
   图像 SHA 完全相同。真实环境共执行 16 步脚本控制，采集的图像/状态进入 FPO Learner。
   完成 3 次更新，Actor、Critic 参数每次都变化，指标均有限，optimizer 状态重载后
@@ -122,6 +124,7 @@ scripts/run_libero_4090.sh run "$FPO_RUNTIME" "$FPO_RUNTIME/runs/p1" --resume --
   首次 CFM 差值均值约 `2.10e-6`，ratio 均值 `1.00005`。后两批的裁剪区间外比例
   均为 `7/8`。三次记录使用同一小批真实观测和脚本控制，后两步的比率变化适合作为
   P1 监测项，无法据此评价 RL 学习效果。
+  [探针原始标量与来源](evidence/fpo_4090_probe_20261124.json)
 - π₀ 官方模型总计 19 个对象、约 11.19 GiB。上游入口中的 S3 地址返回 404，
   当前经官方公开 GCS 分段下载，π₀ 权重加载、B0/B1/B2 和真实在线 RL 成绩需等验收。
   [OpenPI 官方权重说明](https://github.com/Physical-Intelligence/openpi#model-checkpoints)
