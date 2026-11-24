@@ -99,11 +99,29 @@ scripts/run_libero_4090.sh run "$FPO_RUNTIME" "$FPO_RUNTIME/runs/p1" --resume --
 
 - 上游 CPU 玩具脚本结束于 `SMOKE OK`。上游测试替身的循环为 11 回合、40 Replay
   条、60 次更新，结束于 `LOOP CHECK OK`。
-- AutoDL 隔离环境已用 JAX CPU 执行全部 21 项上游测试。包含真实 JAX Actor/Critic
+- AutoDL 隔离环境已用 JAX CPU 执行 27 项测试，包含全部 21 项上游测试。包含真实 JAX Actor/Critic
   测试、CFM、Euler 和 Replay/GAE。环境为 Python 3.11、JAX 0.5.3、Flax 0.10.2、
   Orbax 0.11.13、MuJoCo 3.3.1、robosuite 1.4.1。JAX 与 Orbax 版本和论文脚本
   依赖文件有差异。
 - 独立入口增加初态拆分、动作块窗口、checkpoint 完整性及暖启动边界测试。
+- `probe_006` 在 RTX 4090 上使用固定 LIBERO-90 第 56 项，重复初始化的模拟状态和两路
+  图像 SHA 完全相同。真实环境共执行 16 步脚本控制，采集的图像/状态进入 FPO Learner。
+  完成 3 次更新，Actor、Critic 参数每次都变化，指标均有限，optimizer 状态重载后
+  参数字节和同种子 Actor 输出一致。独立探针未加载 π₀。
+
+  | 实测项目 | 数值 |
+  | --- | ---: |
+  | 探针耗时 | 143.28 s |
+  | Learner 初始化、采样与 GAE，含首次编译 | 43.26 s |
+  | 首次更新与编译，含参数校验 | 75.17 s |
+  | 后两次更新，含参数校验 | 3.29 / 0.88 s |
+  | Actor 裁剪前梯度 L2 | 734.17 / 8.18 / 13.79 |
+  | 显存采样峰值 | 4,583 MiB |
+  | cgroup 内存采样峰值 | 16.81 GiB |
+
+  首次 CFM 差值均值约 `2.10e-6`，ratio 均值 `1.00005`。后两批的裁剪区间外比例
+  均为 `7/8`。三次记录使用同一小批真实观测和脚本控制，后两步的比率变化适合作为
+  P1 监测项，无法据此评价 RL 学习效果。
 - π₀ 官方模型总计 19 个对象、约 11.19 GiB。上游入口中的 S3 地址返回 404，
   当前经官方公开 GCS 分段下载，π₀ 权重加载、B0/B1/B2 和真实在线 RL 成绩需等验收。
   [OpenPI 官方权重说明](https://github.com/Physical-Intelligence/openpi#model-checkpoints)

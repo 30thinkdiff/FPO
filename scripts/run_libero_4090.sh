@@ -96,4 +96,11 @@ printf 'utc,gpu_mib,gpu_total_mib,gpu_util_pct,cgroup_ram_bytes\n' > "$resources
 ) >> "$resources" &
 sampler=$!
 trap 'kill "$sampler" 2>/dev/null || true; wait "$sampler" 2>/dev/null || true' EXIT
-"$python" -u -m "$module" --config "$config" --output "$output" "$@"
+command=("$python" -u -m "$module" --config "$config" --output "$output" "$@")
+if [[ $mode == run ]]; then
+    # The Python soft budget writes resumable state at rollout and update boundaries.
+    # This watchdog covers a stalled compiler or native library.
+    timeout --foreground --signal=INT --kill-after=30s 10300s "${command[@]}"
+else
+    "${command[@]}"
+fi
